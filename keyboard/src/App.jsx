@@ -40,12 +40,20 @@ function App() {
   return (
     <>
       <Screen keyboardString={keyboardString} styles={styles} />
-      <Keyboard
-        updateString={(string) => updateString(string)}
-        addEmptyStyle={addEmptyStyle}
-        deleteStyles={deleteStyles}
-      />
-      <StyleButtons updateStyle={(style) => updateStyle(style)} />
+      <div id="bodyContainer">
+        <div id="container">
+          <Keyboard
+            updateString={(string) => updateString(string)}
+            addEmptyStyle={addEmptyStyle}
+            deleteStyles={deleteStyles}
+          />
+        </div>
+        <StyleButtons
+          updateStyle={(style) => updateStyle(style)}
+          addToString={(char) => updateString((prev) => prev + char)}
+          addEmptyStyle={addEmptyStyle}
+        />
+      </div>
     </>
   );
 }

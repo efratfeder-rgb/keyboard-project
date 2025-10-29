@@ -1,7 +1,4 @@
-function Text(props) {
-  const keyboardString = props.keyboardString;
-  const styles = props.styles;
-
+function Text({ keyboardString, styles }) {
   const keyboardArr = keyboardString.split("§").filter((item) => item !== "");
 
   return (
@@ -11,6 +8,10 @@ function Text(props) {
           {text}
         </span>
       ))}
+      {(keyboardString[keyboardString.length - 1] === "§" ||
+        keyboardString[keyboardString.length - 1] === " ") && (
+        <span style={styles[styles.length - 1]}>_</span>
+      )}
     </>
   );
 }

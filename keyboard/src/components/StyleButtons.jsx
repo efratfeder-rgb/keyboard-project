@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import "../App.css";
 
 const colorEmojis = [
   "⚪", // white
@@ -7,10 +7,10 @@ const colorEmojis = [
   "🔵", // blue
 ];
 const textSizeEmojis = [
-  "🔹", // small
+  "🔷", // small
   "🔷", // medium
-  "🔶", // large
-  "🟥", // extra large
+  "🔷", // large
+  "🔷", // extra large
 ];
 const textDecorationEmojis = [
   "🅱️", // bold
@@ -19,15 +19,16 @@ const textDecorationEmojis = [
   "🔤", // plain / normal text
 ];
 
-function StyleButtons({ updateStyle }) {
+function StyleButtons({ updateStyle, addToString, addEmptyStyle }) {
   const stylePresets = {
     colors: ["grey", "red", "green", "blue"],
-    sizes: [80, 100, 120, 150],
+    sizes: [40, 55, 70, 100],
   };
 
-  const generateButtons = (arr, clickAction) => {
+  const generateButtons = (arr, clickAction, doesScaleSize = false) => {
     return arr.map((item, index) => (
       <button
+        style={doesScaleSize ? { fontSize: 12 + index * 3 } : {}}
         key={index}
         onClick={() => {
           clickAction(index);
@@ -40,15 +41,29 @@ function StyleButtons({ updateStyle }) {
 
   return (
     <>
-      {generateButtons(colorEmojis, (index) => {
-        updateStyle({ color: stylePresets.colors[index] });
-      })}
-      <br />
-      {generateButtons(textSizeEmojis, (index) => {
-        updateStyle({ fontSize: stylePresets.sizes[index] });
-      })}
-      <br />
-      {/* {generateButtons(textDecorationEmojis)} */}
+      <div id="styleBtnsContainer">
+        <button
+          onClick={() => {
+            addToString("§");
+            addEmptyStyle();
+          }}
+        >
+          Style
+        </button>
+        {generateButtons(colorEmojis, (index) => {
+          updateStyle({ color: stylePresets.colors[index] });
+        })}
+        <br />
+        {generateButtons(
+          textSizeEmojis,
+          (index) => {
+            updateStyle({ fontSize: stylePresets.sizes[index] });
+          },
+          true
+        )}
+        <br />
+        {/* {generateButtons(textDecorationEmojis)} */}
+      </div>
     </>
   );
 }

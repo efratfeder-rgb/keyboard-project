@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../App.css";
 
 const hebrew = [
   "א",
@@ -28,7 +29,7 @@ const hebrew = [
   "ן",
   "ף",
   "ץ",
-].reverse();
+];
 const english = [
   "A",
   "B",
@@ -80,7 +81,7 @@ const emojis = [
   "🌟",
 ];
 
-function Keyboard({ updateString, addEmptyStyle, deleteStyles }) {
+function Keyboard({ updateString, deleteStyles }) {
   const [language, setLanguage] = useState("hebrew");
   function addToString(char) {
     updateString((prev) => prev + char);
@@ -112,22 +113,24 @@ function Keyboard({ updateString, addEmptyStyle, deleteStyles }) {
     ));
   };
   function deleteall() {
-    updateString("");
+    updateString("§");
     deleteStyles();
   }
 
   return (
     <>
-      <div>
+      <div id="keyboard">
         <button onClick={() => removeLastChar()}>⌫</button>
-        <button onClick={deleteall}>🗑️</button>
         {addNumbers()}
+        <button onClick={deleteall}>🗑️</button>
         {<br />}
         {language === "hebrew" && generateButtons(hebrew)}
         {language === "english" && generateButtons(english)}
         {language === "emojis" && generateButtons(emojis)}
         <div>
-          <button onClick={() => addToString(" ")}>רווח</button>
+          <button id="spacebar" onClick={() => addToString(" ")}>
+            רווח
+          </button>
         </div>
         <div>
           <button onClick={() => setLanguage("hebrew")}>עברית</button>
@@ -136,14 +139,6 @@ function Keyboard({ updateString, addEmptyStyle, deleteStyles }) {
         </div>
       </div>
       <br />
-      <button
-        onClick={() => {
-          addToString("§");
-          addEmptyStyle();
-        }}
-      >
-        Style
-      </button>
     </>
   );
 }
