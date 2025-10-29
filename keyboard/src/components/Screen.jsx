@@ -1,16 +1,13 @@
-function Screen(props) {
-  //   const keyboardString = props.keyboardString;
-  const styles = [{ backgroundColor: "yellow" }, {}, {}]; //props.styles
-  const keyboardString = "!lalala!ff!";
+import Text from "./Text";
 
-  const keyboardStringSplit = keyboardString.split("!");
+function Screen(props) {
+  const styles = [{ backgroundColor: "Yellow" }, {}, {}]; //props.styles
+  const keyboardString = "§lalala§ ff"; //props.keyboardString
 
   return (
     <>
-      <p>
-        {keyboardStringSplit.map((text, index) => {
-          <span style={styles[index]}>{text}</span>;
-        })}
+      <p style={{ fontSize: 100 }}>
+        <Text keyboardString={keyboardString} styles={styles} />
       </p>
     </>
   );
