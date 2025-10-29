@@ -18,6 +18,10 @@ const textDecorationEmojis = [
   "🆎", // underline
   "🔤", // plain / normal text
 ];
+const stylePresets = {
+  colors: ["grey", "red", "green", "blue"],
+  sizes: [40, 55, 70, 100],
+};
 
 function StyleButtons({
   updateStyle,
@@ -25,11 +29,6 @@ function StyleButtons({
   addEmptyStyle,
   clearStyles,
 }) {
-  const stylePresets = {
-    colors: ["grey", "red", "green", "blue"],
-    sizes: [40, 55, 70, 100],
-  };
-
   const generateButtons = (arr, clickAction, doesScaleSize = false) => {
     return arr.map((item, index) => (
       <button
@@ -44,37 +43,32 @@ function StyleButtons({
     ));
   };
 
+  const updateSize = (index) => {
+    updateStyle({ fontSize: stylePresets.sizes[index] });
+  };
+
+  const updateColor = (index) => {
+    updateStyle({ color: stylePresets.colors[index] });
+  };
+
+  const addStyle = () => {
+    addToString("§");
+    addEmptyStyle();
+  };
+
   return (
     <>
       <div id="styleBtnsContainer">
-        <button
-          onClick={() => {
-            addToString("§");
-            addEmptyStyle();
-          }}
-        >
-          Style
-        </button>
-        {generateButtons(colorEmojis, (index) => {
-          updateStyle({ color: stylePresets.colors[index] });
-        })}
+        <button onClick={addStyle}>Style</button>
+
+        {generateButtons(colorEmojis, updateColor)}
 
         <br />
-        <button
-          onClick={() => {
-            clearStyles();
-          }}
-        >
-          style all
-        </button>
 
-        {generateButtons(
-          textSizeEmojis,
-          (index) => {
-            updateStyle({ fontSize: stylePresets.sizes[index] });
-          },
-          true
-        )}
+        <button onClick={clearStyles}>style all</button>
+
+        {generateButtons(textSizeEmojis, updateSize, true)}
+
         <br />
         {/* {generateButtons(textDecorationEmojis)} */}
       </div>
