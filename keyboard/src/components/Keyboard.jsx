@@ -80,6 +80,37 @@ const emojis = [
   "💖",
   "🌟",
 ];
+const keyboardSymbols = [
+  ".",
+  ",",
+  ";",
+  ":",
+  "'",
+  '"',
+  "!",
+  "@",
+  "#",
+  "$",
+  "%",
+  "^",
+  "&",
+  "*",
+  "(",
+  ")",
+  "-",
+  "=",
+  "+",
+  "{",
+  "}",
+  "[",
+  "]",
+  "\\",
+  "|",
+  "<",
+  ">",
+  "/",
+  "?",
+];
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 function Keyboard({ updateString, deleteStyles }) {
@@ -127,6 +158,7 @@ function Keyboard({ updateString, deleteStyles }) {
         {language === "hebrew" && generateButtons(hebrew)}
         {language === "english" && generateButtons(english)}
         {language === "emojis" && generateButtons(emojis)}
+        {language === "Symbols" && generateButtons(keyboardSymbols)}
         <div>
           <button id="spacebar" onClick={() => addToString(" ")}>
             רווח
@@ -136,6 +168,7 @@ function Keyboard({ updateString, deleteStyles }) {
           <button onClick={() => setLanguage("hebrew")}>עברית</button>
           <button onClick={() => setLanguage("english")}>English</button>
           <button onClick={() => setLanguage("emojis")}>אימוג'ים</button>
+          <button onClick={() => setLanguage("Symbols")}>סימנים</button>
         </div>
       </div>
       <br />
