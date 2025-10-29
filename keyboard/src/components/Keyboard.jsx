@@ -87,6 +87,7 @@ function Keyboard({ updateString, deleteStyles }) {
   function addToString(char) {
     updateString((prev) => prev + char);
   }
+
   function removeLastChar() {
     updateString((str) => {
       if (str.length !== 0) {
@@ -98,20 +99,22 @@ function Keyboard({ updateString, deleteStyles }) {
     });
   }
 
-  const addNumbers = () => {
+  const Numbers = () => {
     return numbers.map((num, index) => (
       <button onClick={() => addToString(num)} key={index}>
         {num}
       </button>
     ));
   };
-  const generateButtons = (arr) => {
+
+  const Buttons = (arr) => {
     return arr.map((item, index) => (
       <button onClick={() => addToString(item)} key={index}>
         {item}
       </button>
     ));
   };
+
   function deleteall() {
     updateString("§");
     deleteStyles();
@@ -120,13 +123,13 @@ function Keyboard({ updateString, deleteStyles }) {
   return (
     <>
       <div id="keyboard">
-        <button onClick={() => removeLastChar()}>⌫</button>
-        {addNumbers()}
+        <button onClick={removeLastChar}>⌫</button>
+        {<Numbers />}
         <button onClick={deleteall}>🗑️</button>
         {<br />}
-        {language === "hebrew" && generateButtons(hebrew)}
-        {language === "english" && generateButtons(english)}
-        {language === "emojis" && generateButtons(emojis)}
+        {language === "hebrew" && <Buttons language={hebrew} />}
+        {language === "english" && <Buttons language={english} />}
+        {language === "emojis" && <Buttons language={emojis} />}
         <div>
           <button id="spacebar" onClick={() => addToString(" ")}>
             רווח

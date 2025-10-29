@@ -23,6 +23,7 @@ function App() {
       },
     ]);
   }
+
   function addEmptyStyle() {
     setStyles([...styles, { color: "grey" }]);
   }
