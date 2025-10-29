@@ -28,6 +28,7 @@ function App() {
   function addEmptyStyle() {
     setStyles([...styles, {}]);
   }
+
   function updateStyle(style) {
     const newStyle = [...styles];
     newStyle[newStyle.length - 1] = {
@@ -35,6 +36,11 @@ function App() {
       ...style,
     };
     setStyles(newStyle);
+  }
+
+  function clearStyles() {
+    setKeyboardString("§" + keyboardString.replaceAll("§", ""));
+    setStyles([{}]);
   }
 
   return (
@@ -52,6 +58,7 @@ function App() {
           updateStyle={(style) => updateStyle(style)}
           addToString={(char) => updateString((prev) => prev + char)}
           addEmptyStyle={addEmptyStyle}
+          clearStyles={clearStyles}
         />
       </div>
     </>

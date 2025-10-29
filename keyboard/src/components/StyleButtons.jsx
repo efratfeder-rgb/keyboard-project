@@ -19,7 +19,12 @@ const textDecorationEmojis = [
   "🔤", // plain / normal text
 ];
 
-function StyleButtons({ updateStyle, addToString, addEmptyStyle }) {
+function StyleButtons({
+  updateStyle,
+  addToString,
+  addEmptyStyle,
+  clearStyles,
+}) {
   const stylePresets = {
     colors: ["grey", "red", "green", "blue"],
     sizes: [40, 55, 70, 100],
@@ -53,7 +58,16 @@ function StyleButtons({ updateStyle, addToString, addEmptyStyle }) {
         {generateButtons(colorEmojis, (index) => {
           updateStyle({ color: stylePresets.colors[index] });
         })}
+
         <br />
+        <button
+          onClick={() => {
+            clearStyles();
+          }}
+        >
+          style all
+        </button>
+
         {generateButtons(
           textSizeEmojis,
           (index) => {
