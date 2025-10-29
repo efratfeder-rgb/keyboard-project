@@ -21,6 +21,12 @@ const textDecorationEmojis = [
 const stylePresets = {
   colors: ["grey", "red", "green", "blue"],
   sizes: [40, 55, 70, 100],
+  decor: [
+    { fontWeight: "bold" },
+    { fontStyle: "italic" },
+    { textDecoration: "underline" },
+    { fontWeight: "normal", fontStyle: "normal", textDecoration: "none" },
+  ],
 };
 
 function StyleButtons({
@@ -51,6 +57,10 @@ function StyleButtons({
     updateStyle({ color: stylePresets.colors[index] });
   };
 
+  const updateDecor = (index) => {
+    updateStyle(stylePresets.decor[index]);
+  };
+
   const addStyle = () => {
     addToString("§");
     addEmptyStyle();
@@ -70,7 +80,7 @@ function StyleButtons({
         {generateButtons(textSizeEmojis, updateSize, true)}
 
         <br />
-        {/* {generateButtons(textDecorationEmojis)} */}
+        {generateButtons(textDecorationEmojis, updateDecor)}
       </div>
     </>
   );

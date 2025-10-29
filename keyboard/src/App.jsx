@@ -9,7 +9,6 @@ function App() {
   const [styles, setStyles] = useState([
     {
       color: "grey",
-      size: 100,
     },
   ]);
 
@@ -21,7 +20,6 @@ function App() {
     setStyles([
       {
         color: "grey",
-        size: 100,
       },
     ]);
   }
@@ -40,7 +38,8 @@ function App() {
 
   function clearStyles() {
     setKeyboardString("§" + keyboardString.replaceAll("§", ""));
-    setStyles([{}]);
+    const newStyle = styles.length > 0 ? styles[styles.length - 1] : {};
+    setStyles([newStyle]);
   }
 
   return (
