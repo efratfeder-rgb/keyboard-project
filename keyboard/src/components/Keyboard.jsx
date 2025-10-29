@@ -80,7 +80,7 @@ const emojis = [
   "🌟",
 ];
 
-function Keyboard({ updateString, addEmptyStyle }) {
+function Keyboard({ updateString, addEmptyStyle, deleteStyles }) {
   const [language, setLanguage] = useState("hebrew");
   function addToString(char) {
     updateString((prev) => prev + char);
@@ -113,6 +113,7 @@ function Keyboard({ updateString, addEmptyStyle }) {
   };
   function deleteall() {
     updateString("");
+    deleteStyles();
   }
 
   return (

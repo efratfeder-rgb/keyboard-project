@@ -17,6 +17,14 @@ function App() {
     setKeyboardString(string);
   }
 
+  function deleteStyles() {
+    setStyles([
+      {
+        color: "grey",
+        size: 100,
+      },
+    ]);
+  }
   function addEmptyStyle() {
     setStyles([...styles, {}]);
   }
@@ -27,8 +35,6 @@ function App() {
       ...style,
     };
     setStyles(newStyle);
-
-    console.log(styles);
   }
 
   return (
@@ -37,6 +43,7 @@ function App() {
       <Keyboard
         updateString={(string) => updateString(string)}
         addEmptyStyle={addEmptyStyle}
+        deleteStyles={deleteStyles}
       />
       <StyleButtons updateStyle={(style) => updateStyle(style)} />
     </>

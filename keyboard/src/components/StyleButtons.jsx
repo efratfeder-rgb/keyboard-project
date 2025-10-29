@@ -21,7 +21,7 @@ const textDecorationEmojis = [
 
 function StyleButtons({ updateStyle }) {
   const stylePresets = {
-    colors: ["white", "red", "green", "blue"],
+    colors: ["grey", "red", "green", "blue"],
     sizes: [80, 100, 120, 150],
   };
 
