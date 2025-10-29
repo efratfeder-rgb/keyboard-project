@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../App.css";
-
+import NumberKeys from "./NumberKeys";
+import Buttons from "./Buttons";
 const hebrew = [
   "א",
   "ב",
@@ -130,22 +131,6 @@ function Keyboard({ updateString, deleteStyles }) {
     });
   }
 
-  const Numbers = () => {
-    return numbers.map((num, index) => (
-      <button onClick={() => addToString(num)} key={index}>
-        {num}
-      </button>
-    ));
-  };
-
-  const Buttons = (arr) => {
-    return arr.map((item, index) => (
-      <button onClick={() => addToString(item)} key={index}>
-        {item}
-      </button>
-    ));
-  };
-
   function deleteall() {
     updateString("§");
     deleteStyles();
@@ -155,13 +140,23 @@ function Keyboard({ updateString, deleteStyles }) {
     <>
       <div id="keyboard">
         <button onClick={removeLastChar}>⌫</button>
-        {<Numbers />}
+
+        <NumberKeys numberArray={numbers} addToString={addToString} />
+
         <button onClick={deleteall}>🗑️</button>
         {<br />}
-        {language === "hebrew" && <Buttons language={hebrew} />}
-        {language === "english" && <Buttons language={english} />}
-        {language === "emojis" && <Buttons language={emojis} />}
-        {language === "Symbols" && generateButtons(keyboardSymbols)}
+        {language === "hebrew" && (
+          <Buttons language={hebrew} addToString={addToString} />
+        )}
+        {language === "english" && (
+          <Buttons language={english} addToString={addToString} />
+        )}
+        {language === "emojis" && (
+          <Buttons language={emojis} addToString={addToString} />
+        )}
+        {language === "Symbols" && (
+          <Buttons language={keyboardSymbols} addToString={addToString} />
+        )}
         <div>
           <button id="spacebar" onClick={() => addToString(" ")}>
             רווח
