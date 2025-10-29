@@ -8,7 +8,7 @@ function App() {
   const [keyboardString, setKeyboardString] = useState("§");
   const [styles, setStyles] = useState([
     {
-      color: "red",
+      color: "grey",
       size: 100,
     },
   ]);
