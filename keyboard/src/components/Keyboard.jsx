@@ -1,5 +1,5 @@
 import { useState } from "react";
-function Keyboard({ updateString }) {
+function Keyboard({ updateString, addEmptyStyle }) {
   const [language, setLanguage] = useState("hebrew");
   const hebrew = [
     "א",
@@ -106,6 +106,15 @@ function Keyboard({ updateString }) {
         <button onClick={() => setLanguage("english")}>English</button>
         <button onClick={() => setLanguage("emojis")}>אימוג'ים</button>
       </div>
+      <br />
+      <button
+        onClick={() => {
+          addToString("§");
+          addEmptyStyle();
+        }}
+      >
+        Style
+      </button>
     </>
   );
 }
