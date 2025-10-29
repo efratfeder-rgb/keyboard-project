@@ -26,7 +26,7 @@ function App() {
     ]);
   }
   function addEmptyStyle() {
-    setStyles([...styles, {}]);
+    setStyles([...styles, { color: "grey" }]);
   }
 
   function updateStyle(style) {
