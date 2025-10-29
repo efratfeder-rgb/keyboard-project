@@ -2,7 +2,7 @@ import Text from "./Text";
 
 function Screen(props) {
   const styles = [{ backgroundColor: "Yellow" }, {}, {}]; //props.styles
-  const keyboardString = "§lalala§ ff"; //props.keyboardString
+  const keyboardString = props.keyboardString; //"§lalala§ ff"; //props.keyboardString
 
   return (
     <>

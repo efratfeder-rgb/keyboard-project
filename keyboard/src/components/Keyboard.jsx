@@ -1,5 +1,5 @@
 import { useState } from "react";
-function Keyboard(props) {
+function Keyboard({ updateString }) {
   const [language, setLanguage] = useState("hebrew");
   const hebrew = [
     "א",
@@ -75,15 +75,21 @@ function Keyboard(props) {
     "💖",
     "🌟",
   ];
+
+  function addToString(char) {
+    updateString((prev) => prev + char);
+  }
+
   const addNumbers = () => {
     const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     return numbers.map((num, index) => <button key={index}>{num}</button>);
   };
   const generateButtons = (arr) => {
-    return arr.map((item, index) => <button key={index}>{item}</button>);
-  };
-  const addEmojis = () => {
-    return emojis.map((emoji, index) => <button key={index}>{emoji}</button>);
+    return arr.map((item, index) => (
+      <button onClick={() => addToString(item)} key={index}>
+        {item}
+      </button>
+    ));
   };
 
   return (
@@ -94,7 +100,7 @@ function Keyboard(props) {
       {<br />}
       {language === "hebrew" && generateButtons(hebrew)}
       {language === "english" && generateButtons(english)}
-      {language === "emojis" && addEmojis()}
+      {language === "emojis" && generateButtons(emojis)}
       <div>
         <button onClick={() => setLanguage("hebrew")}>עברית</button>
         <button onClick={() => setLanguage("english")}>English</button>
